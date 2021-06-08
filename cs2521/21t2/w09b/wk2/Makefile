@@ -11,7 +11,7 @@ q2: q2.o List.o
 q2.o: q2.c List.h
 
 q3: q3.o List.o
-q3.o: q3.c List.
+q3.o: q3.c List.h
 
 q6: q6.o
 q6.o: q6.c
