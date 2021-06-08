@@ -1,14 +1,27 @@
-typedef struct node {
-	int data;
-	struct node *next;
-} Node;
+#include <stdio.h>
+#include <stdbool.h>
 
-typedef Node *List;
+#include "List.h"
 
-bool listIsSortedRecursive(List list) {
-	// This time, let's try coming up with the recursive
-  	// solution straight up.
+
+bool listIsSortedRec(List list) {
+	// Let's try coming up with only the recursive solution.
 
   	// Base cases?
   	// Recursive case?
+}
+
+
+int main(int argc, char **argv) {
+    List list = readList(argc, argv);
+    printf("Input list: ");
+    showList(list);
+
+	char *status = listIsSortedRec(list)
+		? "sorted"
+		: "not sorted";
+    printf("The list is %s\n", status);
+
+    freeList(list);
+	return 0;
 }

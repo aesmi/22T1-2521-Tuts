@@ -8,4 +8,4 @@
 ## The tute
 - Anything you want me to go over?
 - Any particular tute question requests?
-    - My plan: everything but q6
+    - My plan: everything but q5

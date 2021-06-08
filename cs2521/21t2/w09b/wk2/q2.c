@@ -1,18 +1,32 @@
-typedef struct node {
-	int data;
-	struct node *next;
-} Node;
+#include <stdio.h>
 
-typedef Node *List;
+#include "List.h"
 
-int listCountOddsIterative(List list) {
-	// The COMP1511 way
+
+int listCountOdds(List list) {
+    // First, let's do this the COMP1511 way.
 }
 
-int listCountOddsRecursive(List list) {
-	// Base case?
-	// Recursive cases?
+int listCountOddsRec(List list) {
+    // Base case?
+    // Recursive cases?
 }
 
-// Exercise: implement some of the linked list ADT so that
-// you can check these functions work.
+
+int main(int argc, char **argv) {
+    List list = readList(argc, argv);
+    printf("Input list: ");
+    showList(list);
+
+    printf(
+        "Iterative says the list has %d odd elements\n",
+        listCountOdds(list)
+    );
+    printf(
+        "Recursive says the list has %d odd elements\n",
+        listCountOddsRec(list)
+    );
+
+    freeList(list);
+    return 0;
+}

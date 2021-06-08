@@ -1,15 +1,32 @@
-typedef struct node {
-    int data;
-    struct node *next;
-} Node;
+#include <stdio.h>
 
-typedef Node *List;
+#include "List.h"
 
-int listLengthIterative(List list) {
-    // The COMP1511 way
+
+int listLength(List list) {
+    // First, let's do this the COMP1511 way.
 }
 
-int listLengthRecursive(List list) {
+int listLengthRec(List list) {
     // Base case?
     // Recursive case?
+}
+
+
+int main(int argc, char **argv) {
+    List list = readList(argc, argv);
+    printf("Input list: ");
+    showList(list);
+
+    printf(
+        "Iterative says the list has length %d\n",
+        listLength(list)
+    );
+    printf(
+        "Recursive says the list has length %d\n",
+        listLengthRec(list)
+    );
+
+    freeList(list);
+    return 0;
 }
