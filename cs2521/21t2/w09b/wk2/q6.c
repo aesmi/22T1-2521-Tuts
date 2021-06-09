@@ -7,7 +7,7 @@ static int doBinarySearchRec(int a[], int lo, int hi, int value) {
     int mid = (lo + hi) / 2;
 
     // Base cases?
-    // Inductive cases?
+    // Recursive cases?
 }
 
 
@@ -29,6 +29,7 @@ int binarySearch(int a[], int n, int value) {
 int binarySearchRec(int a[], int n, int value) {
     // Here, we delegate computation to a helper function.
     // Why can't we just use binarySearchRec though?
+    // A: it doesn't let us specify lo and hi in recursive calls.
     return doBinarySearchRec(a, 0, n - 1, value);
 }
 
