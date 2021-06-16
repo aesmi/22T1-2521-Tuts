@@ -8,8 +8,10 @@
 - Anything you want me to go over?
     - Do you find explicit recaps helpful, or would you prefer me to recap as we go?
 - Any particular tute question requests?
-    - My plan: all analysis questions except q3 and q6
-    - If we get time, we'll talk about the `gcc` and Makefiles questions at the end
+    - My plan: at least all of the analysis questions except q3 and q6
 
 ## Some nice resources
 - [Big-O Cheat Sheet](https://www.bigocheatsheet.com/)
+- For Makefiles, since they can be quite tricky:
+  - [Implicit rules](https://www.gnu.org/software/make/manual/html_node/Catalogue-of-Rules.html#Catalogue-of-Rules)
+  - [Implicit variables](https://www.gnu.org/software/make/manual/html_node/Implicit-Variables.html#Implicit-Variables)

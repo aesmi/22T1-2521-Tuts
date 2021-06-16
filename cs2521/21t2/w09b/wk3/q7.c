@@ -10,13 +10,28 @@ static char *makeString(int n);
 
 
 /**
- * Time complexity:
- * (where n is ???)
+ * Time complexity: O(n^2)
+ * (where n is the length of the string)
  *
  * Could we do better?
+ * A: Yes! We can make it O(n) by extracting the call to strlen
+ *    out to a variable before we enter the loop, and then adjust
+ *    the loop condition to check the value of i against it.
+ *    In the original code, we had to first evaluate strlen(s) each
+ *    time we checked the condition. Since the length of the string
+ *    is not changing, this is pointlessly increasing complexity.
  */
 void strToLower(char *s) {
+    /*
+    // Original code
     for (int i = 0; i < strlen(s); i++) {
+        s[i] = tolower(s[i]);
+    }
+    */
+
+    // Optimised code
+    int length = strlen(s);
+    for (int i = 0; i < length; i++) {
         s[i] = tolower(s[i]);
     }
 }

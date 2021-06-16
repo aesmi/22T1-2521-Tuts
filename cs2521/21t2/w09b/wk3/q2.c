@@ -13,7 +13,28 @@ typedef struct polynomial {
 
 /** Evaluates p(x) for an nth degree polynomial p in O(n) time. */
 double evalPolynomial(Polynomial p, double x) {
-    // TODO: Let's implement this!
+    // A naive solution would be to use the pow function from math.h
+    // to calculate x^i in each step of the loop. Be careful, though!
+    // pow(x, i) is not an O(1) operation. We saw in week 2's tute that
+    // we could implement our own pow in O(log n) time, so overall
+    // our algorithm ends up having complexity O(n log n) -- too slow.
+
+    // In order to avoid this and get a true O(n) algorithm, we will
+    // compute x^i incrementally as we go along in the loop.
+    // Initially, we set a variable to be x^0 = 1 ...
+    double power = 1;
+
+    double result = 0;
+    for (int i = 0; i <= p.degree; i++) {
+        // ... use it in place of pow(x, i) ...
+        result += p.a[i] * power;
+
+        // ... and finally multiply it by x each iteration of the loop
+        // so that we end up with x^(i+1) for the next multiplication.
+        power *= x;
+    }
+
+    return result;
 }
 
 
