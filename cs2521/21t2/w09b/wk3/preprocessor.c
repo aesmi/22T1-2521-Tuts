@@ -1,10 +1,12 @@
-// Try running gcc -E preprocessor.c and see what happens.
-// Don't worry if some of the lines before the main function
-// don't make much sense -- focus instead on what happens inside main
-// after we run this command.
+/**
+ * Try running gcc -E preprocessor.c and see what happens.
+ * Don't worry if some of the lines before the main function
+ * don't make much sense -- focus instead on what happens inside main
+ * after we run this command.
+ */
 
 
-#include <stdbool.h>
+#include <stdio.h>
 
 
 #define W 2521
