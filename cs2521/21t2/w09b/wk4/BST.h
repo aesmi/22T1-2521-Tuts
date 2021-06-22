@@ -2,13 +2,13 @@
 #define BST_H
 
 
-typedef struct BSTNode {
+typedef struct BSTNode *BST;
+
+struct BSTNode {
 	int value;
 	BST left;
 	BST right;
-} BSTNode;
-
-typedef struct BSTNode *BST;
+};
 
 
 /**
