@@ -3,8 +3,30 @@
 #include "BST.h"
 
 
+#define NOT_IN_TREE -1
+
+
 int bstNodeLevel(BST bst, int value) {
-    // TODO: Let's write this!
+    if (bst == NULL) {
+        return NOT_IN_TREE;
+    } else if (value == bst->value) {
+        // We'll say that any root node is at level 0 of the tree.
+        // You could say it's level 1 as well, though - up to you.
+        return 0;
+    }
+
+    int subtreeLevel;
+    if (value < bst->value) {
+        subtreeLevel = bstNodeLevel(bst->left, value);
+    } else {
+        subtreeLevel = bstNodeLevel(bst->right, value);
+    }
+
+    if (subtreeLevel == NOT_IN_TREE) {
+        return NOT_IN_TREE;
+    }
+
+    return 1 + subtreeLevel;
 }
 
 

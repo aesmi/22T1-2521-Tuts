@@ -4,7 +4,11 @@
 
 
 int bstNumNodes(BST bst) {
-    // TODO: Let's write this!
+    if (bst == NULL) {
+        return 0;
+    }
+
+    return 1 + bstNumNodes(bst->left) + bstNumNodes(bst->right);
 }
 
 

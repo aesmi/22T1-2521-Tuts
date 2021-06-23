@@ -4,7 +4,7 @@
 
 
 int bstCountGreater(BST bst, int value) {
-    // TODO: Let's write this!
+    // TODO: Give this a try on your own!
 }
 
 
