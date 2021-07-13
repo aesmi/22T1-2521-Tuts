@@ -18,7 +18,7 @@ static void  printPath(Edge *, int);
 
 bool isEulerPath(Graph g, Edge *e, int nE) {
     // TODO: Let's write this!
-    return false;
+    return true;
 }
 
 

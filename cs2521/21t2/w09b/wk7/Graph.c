@@ -12,6 +12,7 @@
 struct graph {
     bool **adjMatrix;
     int    nV;
+    int    nE;
 };
 
 
@@ -38,16 +39,27 @@ Graph buildGraph(int dim) {
     }
 
     g->nV = dim;
+    g->nE = 0;
 
     return g;
 }
 
 void insertEdge(Graph g, Vertex u, Vertex v) {
     g->adjMatrix[u][v] = g->adjMatrix[v][u] = true;
+    g->nE++;
+}
+
+int numEdges(Graph g) {
+    return g->nE;
+}
+
+bool isVertex(Graph g, Vertex v) {
+    return 0 <= v && v < g->nV;
 }
 
 bool connected(Graph g, Vertex u, Vertex v) {
-    return g->adjMatrix[u][v] && g->adjMatrix[v][u];
+    return isVertex(g, u) && isVertex(g, v)
+        && g->adjMatrix[u][v] && g->adjMatrix[v][u];
 }
 
 void freeGraph(Graph g) {

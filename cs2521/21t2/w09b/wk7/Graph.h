@@ -15,6 +15,12 @@ Graph buildGraph(int);
 /** Insert an edge between two vertices into a graph. */
 void  insertEdge(Graph, Vertex, Vertex);
 
+/** Return the number of edges in the graph. */
+int   numEdges(Graph);
+
+/** Check whether a vertex exits in the graph. */
+bool  isVertex(Graph, Vertex);
+
 /** Check whether two vertices are connected in a graph. */
 bool  connected(Graph, Vertex, Vertex);
 
