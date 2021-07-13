@@ -18,7 +18,7 @@ struct graph {
 static void *mallocSafely(size_t bytes, const char *warning) {
     void *mem = malloc(bytes);
     if (mem == NULL) {
-        fprintf(stderr, warning);
+        fprintf(stderr, "%s\n", warning);
         exit(EXIT_FAILURE);
     }
 
@@ -26,20 +26,24 @@ static void *mallocSafely(size_t bytes, const char *warning) {
 }
 
 
-Graph buildGraph(int **matrix, int dim) {
+Graph buildGraph(int dim) {
     Graph g = mallocSafely(sizeof(*g), GRAPH_ERR);
 
     g->adjMatrix = mallocSafely(dim * sizeof(bool *), MATRIX_ERR);
     for (Vertex i = 0; i < dim; i++) {
         g->adjMatrix[i] = mallocSafely(dim * sizeof(bool), MATRIX_ERR);
         for (Vertex j = 0; j < dim; j++) {
-            g->adjMatrix[i][j] = matrix[i][j] && matrix[j][i];
+            g->adjMatrix[i][j] = false;
         }
     }
 
     g->nV = dim;
 
     return g;
+}
+
+void insertEdge(Graph g, Vertex u, Vertex v) {
+    g->adjMatrix[u][v] = g->adjMatrix[v][u] = true;
 }
 
 bool connected(Graph g, Vertex u, Vertex v) {

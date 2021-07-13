@@ -9,8 +9,11 @@ typedef int Vertex;
 typedef struct graph *Graph;
 
 
-/** Build a graph from a square adjacency matrix. */
-Graph buildGraph(int **, int);
+/** Build a graph with a fixed number of vertices. */
+Graph buildGraph(int);
+
+/** Insert an edge between two vertices into a graph. */
+void  insertEdge(Graph, Vertex, Vertex);
 
 /** Check whether two vertices are connected in a graph. */
 bool  connected(Graph, Vertex, Vertex);

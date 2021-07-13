@@ -13,9 +13,11 @@ static Graph generateGraph1(void);
 static Graph generateGraph2(void);
 static Graph generateGraph3(void);
 static Graph generateGraph4(void);
+static void  printPath(Edge *, int);
 
 
 bool isEulerPath(Graph g, Edge *e, int nE) {
+    // TODO: Let's write this!
     return false;
 }
 
@@ -30,7 +32,7 @@ int main(void) {
 
     // A path in graph 2
     // 0 -> 1 -> 2
-    Edge path2[] = path1;
+    Edge *path2 = path1;
 
     // A path in graph 3
     // 0 -> 2 -> 3 -> 2 -> 1
@@ -56,23 +58,27 @@ int main(void) {
     Graph g3 = generateGraph3();
     Graph g4 = generateGraph4();
 
+    printPath(path1, 2);
     printf(
-        "Is path1 an Euler path in graph 1? %s\n",
+        "Is this an Euler path in graph 1? %s\n\n",
         isEulerPath(g1, path1, 2) ? "yes" : "no"
     );
 
+    printPath(path2, 2);
     printf(
-        "Is path2 an Euler path in graph 2? %s\n",
+        "Is this an Euler path in graph 2? %s\n\n",
         isEulerPath(g2, path2, 2) ? "yes" : "no"
     );
 
+    printPath(path3, 4);
     printf(
-        "Is path3 an Euler path in graph 3? %s\n",
+        "Is this an Euler path in graph 3? %s\n\n",
         isEulerPath(g3, path3, 4) ? "yes" : "no"
     );
 
+    printPath(path4, 5);
     printf(
-        "Is path4 an Euler path in graph 4? %s\n",
+        "Is this an Euler path in graph 4? %s\n",
         isEulerPath(g4, path4, 5) ? "yes" : "no"
     );
 
@@ -81,47 +87,38 @@ int main(void) {
 
 
 static Graph generateGraph1(void) {
-    int dim = 3;
-    int matrix[3][3] = {
-        { 0, 1, 0 },
-        { 1, 0, 1 },
-        { 0, 1, 0 }
-    };
-
-    return buildGraph(matrix, dim);
+    Graph g = buildGraph(3);
+    insertEdge(g, 0, 1);
+    insertEdge(g, 1, 2);
+    return g;
 }
 
 static Graph generateGraph2(void) {
-    int dim = 3;
-    int matrix[3][3] = {
-        { 0, 1, 1 },
-        { 1, 0, 1 },
-        { 1, 1, 0 }
-    };
-
-    return buildGraph(matrix, dim);
+    Graph g = generateGraph1();
+    insertEdge(g, 2, 0);
+    return g;
 }
 
 static Graph generateGraph3(void) {
-    int dim = 4;
-    int matrix[4][4] = {
-        { 0, 0, 1, 0 },
-        { 0, 0, 1, 0 },
-        { 1, 1, 0, 1 },
-        { 0, 0, 1, 0 }
-    };
-
-    return buildGraph(matrix, dim);
+    Graph g = buildGraph(4);
+    insertEdge(g, 0, 2);
+    insertEdge(g, 1, 2);
+    insertEdge(g, 2, 3);
+    return g;
 }
 
 static Graph generateGraph4(void) {
-    int dim = 4;
-    int matrix[4][4] = {
-        { 0, 1, 1, 1 },
-        { 1, 0, 1, 1 },
-        { 1, 1, 0, 1 },
-        { 1, 1, 1, 0 }
-    };
+    Graph g = generateGraph3();
+    insertEdge(g, 0, 1);
+    insertEdge(g, 0, 3);
+    insertEdge(g, 1, 3);
+    return g;
+}
 
-    return buildGraph(matrix, dim);
+static void printPath(Edge *e, int nE) {
+    printf("%d", e[0].u);
+    for (int i = 0; i < nE; i++) {
+        printf(" -> %d", e[i].v);
+    }
+    printf("\n");
 }
