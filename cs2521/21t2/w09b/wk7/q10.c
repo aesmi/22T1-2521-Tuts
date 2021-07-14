@@ -4,53 +4,106 @@
 
 
 typedef struct edge {
-    Vertex u;
-    Vertex v;
+    Vertex start;
+    Vertex end;
 } Edge;
 
 
+/** Generate graph 1 from Q9. */
 static Graph generateGraph1(void);
+
+/** Generate graph 2 from Q9. */
 static Graph generateGraph2(void);
+
+/** Generate graph 3 from Q9. */
 static Graph generateGraph3(void);
+
+/** Generate graph 4 from Q9. */
 static Graph generateGraph4(void);
+
+/** Prints a path on one line. */
 static void  printPath(Edge *, int);
 
 
 bool isEulerPath(Graph g, Edge *e, int nE) {
-    // TODO: Let's write this!
+    // An Euler path is a path in the graph which visits each edge
+    // exactly once. Since we want to check if a given path is an
+    // Euler path, let's break that definition down into the things
+    // we should be checking:
+
+    // (1) An Euler path must be a path, i.e. for each edge in the
+    //     path, the end point must be the start point of the next.
+    for (int i = 0; i < nE - 1; i++) {
+        if (e[i].end != e[i + 1].start) {
+            return false;
+        }
+    }
+
+    // (2) An Euler path must be a valid path in the graph,
+    //     i.e. it must contain edges actually in the graph.
+    for (int i = 0; i < nE; i++) {
+        if (!connected(g, e[i].start, e[i].end)) {
+            return false;
+        }
+    }
+
+
+    // (3) An Euler path must include every edge.
+    if (numEdges(g) != nE) {
+        return false;
+    }
+
+    // (4) An Euler path must include each edge exactly once, i.e. if
+    //     the edge u -> v appears in the path, it cannot appear again.
+    //     However, since g is undirected, it also means that v -> u
+    //     can't appear either -- they're actually the same edge.
+    for (int i = 0; i < nE; i++) {
+        for (int j = i + 1; j < nE; j++) {
+            // Situation 1: u -> v present twice
+            if (e[i].start == e[j].start && e[i].end == e[j].end) {
+                return false;
+            }
+
+            // Situation 2: both u -> v and v -> u present
+            if (e[i].start == e[j].end && e[i].end == e[j].start) {
+                return false;
+            }
+        }
+    }
+
     return true;
 }
 
 
 int main(void) {
-    // A path in graph 1
-    // 0 - > 1 -> 2
+    // The path 0 -> 1 -> 2, which is an Euler path in graph 1.
     Edge path1[] = {
-        { .u = 0, .v = 1 },
-        { .u = 1, .v = 2 }
+        { .start = 0, .end = 1 },
+        { .start = 1, .end = 2 }
     };
 
-    // A path in graph 2
-    // 0 -> 1 -> 2
+    // The same path, which is not an Euler path in graph 2 since
+    // it only contains 2 of its 3 edges.
     Edge *path2 = path1;
 
-    // A path in graph 3
-    // 0 -> 2 -> 3 -> 2 -> 1
+    // The path 0 -> 2 -> 3 -> 2 -> 1, which is not an Euler path in
+    // graph 3. This graph cannot have an Euler path, since all of its
+    // 4 vertices have odd degree.
     Edge path3[] = {
-        { .u = 0, .v = 2 },
-        { .u = 2, .v = 3 },
-        { .u = 3, .v = 2 },
-        { .u = 2, .v = 1}
+        { .start = 0, .end = 2 },
+        { .start = 2, .end = 3 },
+        { .start = 3, .end = 2 },
+        { .start = 2, .end = 1}
     };
 
-    // A path in graph 4
-    // 0 -> 1 -> 2 -> 0 -> 3 -> 1
+    // The path 0 -> 1 -> 2 -> 0 -> 3 -> 1, which is not an Euler path
+    // in graph 4. Similarly to graph 3, it cannot have an Euler path.
     Edge path4[] = {
-        { .u = 0, .v = 1 },
-        { .u = 1, .v = 2 },
-        { .u = 2, .v = 0 },
-        { .u = 0, .v = 3 },
-        { .u = 3, .v = 1 }
+        { .start = 0, .end = 1 },
+        { .start = 1, .end = 2 },
+        { .start = 2, .end = 0 },
+        { .start = 0, .end = 3 },
+        { .start = 3, .end = 1 }
     };
 
     Graph g1 = generateGraph1();
@@ -116,9 +169,9 @@ static Graph generateGraph4(void) {
 }
 
 static void printPath(Edge *e, int nE) {
-    printf("%d", e[0].u);
+    printf("%d", e[0].start);
     for (int i = 0; i < nE; i++) {
-        printf(" -> %d", e[i].v);
+        printf(" -> %d", e[i].end);
     }
     printf("\n");
 }
