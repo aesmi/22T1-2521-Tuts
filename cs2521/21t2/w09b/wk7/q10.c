@@ -47,7 +47,6 @@ bool isEulerPath(Graph g, Edge *e, int nE) {
         }
     }
 
-
     // (3) An Euler path must include every edge.
     if (numEdges(g) != nE) {
         return false;
