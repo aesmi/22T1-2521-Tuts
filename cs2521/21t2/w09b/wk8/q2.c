@@ -8,9 +8,28 @@
 static Graph generateGraph(void);
 
 
+/** A fairly standard recursive DFS. No tricks here. */
+static void reachableDFS(Graph g, Vertex v, Set s) {
+    addToSet(s, v);
+
+    int nV = numVertices(g);
+    for (Vertex w = 0; w < nV; w++) {
+        if (connected(g, v, w) && !setContains(s, w)) {
+            reachableDFS(g, w, s);
+        }
+    }
+}
+
 Set reachable(Graph g, Vertex src) {
-    // TODO: Let's implement this!
+    // All we have to do is pick our favourite graph traversal and
+    // run it on the graph, keep track of what we visited in a set
+    // and then return that set.
+    // A DFS is nice and easy to implement recursively without needing
+    // to code up a stack ADT, so we'll do that. An iterative DFS or a
+    // BFS would work for this problem though - it's just that DFS is
+    // probably the one you'd choose if you had no special conditions.
     Set s = newSet(numVertices(g));
+    reachableDFS(g, src, s);
     return s;
 }
 
