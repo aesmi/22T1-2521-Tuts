@@ -2,6 +2,16 @@
 #include <stdlib.h>
 
 
+/**
+ * Q: How does this function actually work?
+ * A:
+ *
+ * Q: Is there anything wrong with this function?
+ * A:
+ *
+ * Q: How could we improve it to address those issues?
+ * A:
+ */
 int hash(char *key, int n) {
     int h = 0;
     for (char *c = key; *c != '\0'; c++)
