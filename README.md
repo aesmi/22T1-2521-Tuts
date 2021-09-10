@@ -1,5 +1,5 @@
 # James' tutoring resources
-The home for the code/solutions/etc. from my tutorials, as well as any other resources as I see fit.
+The home for the code/solutions/etc. from my tutorials, as well as any other resources.
 
 ## Table of contents
 | Course |    Term    |          Tutorial Slot           |                                  Folder                                     |
