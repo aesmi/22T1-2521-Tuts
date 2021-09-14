@@ -11,8 +11,6 @@
 
 module Tute1 where
 
-import Prelude hiding ((++))
-
 -- | An example of the data keyword
 --   We use this when we're making our own data type
 --   In this case, we're defining our own list type:
