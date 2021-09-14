@@ -56,5 +56,5 @@ convertToHaskellList (Cons x xs) = x : convertToHaskellList xs
 --   Note also the use of _, which you can use in place of unused args
 --   (e.g. in the Nil case, we don't actually apply the function given)
 mapList :: (a -> b) -> List a -> List b
-mapList _ Nil         =  Nil
+mapList _ Nil         = Nil
 mapList f (Cons x xs) = Cons (f x) (mapList f xs)
