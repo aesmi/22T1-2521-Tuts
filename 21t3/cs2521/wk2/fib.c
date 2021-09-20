@@ -4,7 +4,7 @@
 
 /**
  * Computes the nth Fibonacci number, given the initial values 1 and 1.
- * What's wrong with?
+ * What's wrong with this, though?
  */
 int fib(int n) {
     if (n == 1 || n == 2) {
