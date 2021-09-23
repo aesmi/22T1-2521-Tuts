@@ -19,7 +19,7 @@ int main(int argc, char **argv) {
     printf("Input list: ");
     showList(list);
 
-    char *status = listIsSorted(list)
+    char *status = listDeleteEvens(list)
         ? "sorted"
         : "not sorted";
     printf("The list is %s\n", status);
