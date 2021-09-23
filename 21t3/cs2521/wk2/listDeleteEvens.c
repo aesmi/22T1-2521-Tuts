@@ -10,7 +10,7 @@
  */
 List listDeleteEvens(List list) {
     // TODO: Complete this function!
-    return true;
+    return NULL;
 }
 
 
