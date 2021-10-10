@@ -6,7 +6,7 @@
 ---  ...
 --   *MinHS> eval onePlusOne
 --   IntV 2
---   *MinHS> eval avgOf3141And3161Is3151
+--   *MinHS> eval onePlusOneRecfun
 --   BoolV True
 --   ...
 
@@ -20,10 +20,7 @@ data Type = IntTy
 data Expr = Num    Int
           | Lit    Bool
           | Plus   Expr Expr
-          | Minus  Expr Expr
-          | Less   Expr Expr
-          | Equal  Expr Expr
-          | Divide Expr Expr
+          | Eq     Expr Expr
           | If     Expr Expr Expr
           | Apply  Expr Expr
           | Recfun Type Type (Expr -> Expr -> Expr)
@@ -37,10 +34,7 @@ eval :: Expr -> Value
 eval (Num    n       ) = error "TODO: 'eval' unimplemented"
 eval (Lit    b       ) = error "TODO: 'eval' unimplemented"
 eval (Plus   e1 e2   ) = error "TODO: 'eval' unimplemented"
-eval (Minus  e1 e2   ) = error "TODO: 'eval' unimplemented"
-eval (Less   e1 e2   ) = error "TODO: 'eval' unimplemented"
-eval (Equal  e1 e2   ) = error "TODO: 'eval' unimplemented"
-eval (Divide e1 e2   ) = error "TODO: 'eval' unimplemented"
+eval (Eq     e1 e2   ) = error "TODO: 'eval' unimplemented"
 eval (If     ec et ee) = error "TODO: 'eval' unimplemented"
 eval (Apply  ef ex   ) = error "TODO: 'eval' unimplemented"
 eval (Recfun t1 t2 f ) = error "TODO: 'eval' unimplemented"
@@ -56,14 +50,13 @@ uneval FunV {--} = error "TODO?: 'uneval' unimplemented"
 onePlusOne :: Expr
 onePlusOne = Plus (Num 1) (Num 1)
 
--- | Example to try: Is the average of 3141 and 3161 equal to 3151?
-avgOf3141And3161Is3151 :: Expr
-avgOf3141And3161Is3151 =
-  Equal (Apply (Apply average (Num 3161)) (Num 3141)) (Num 3151)
+-- | Example to try: Does evaluating 1 + 1 with recfuns give the same answer?
+onePlusOneRecfun :: Expr
+onePlusOneRecfun =
+  Eq (Apply (Apply add (Num 1)) (Num 1)) (Plus (Num 1) (Num 1))
   where
-    average = Recfun IntTy (FunTy IntTy IntTy) (\_ x ->
-                Recfun IntTy IntTy (\_ y ->
-                  Divide (Plus x y) (Num 2)))
+    add = Recfun IntTy (FunTy IntTy IntTy) (\_ x ->
+            Recfun IntTy IntTy (\_ y -> Plus x y))
 
 -- This bit of code lets us print something of our Value type.
 -- Disregard it for now: more on this later on in the course.
