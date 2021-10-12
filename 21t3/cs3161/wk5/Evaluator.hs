@@ -13,7 +13,7 @@ data Expr = Num    Int
           | Apply  Expr Expr
           | Recfun Type Type (Expr -> Expr -> Expr)
           --                  ^^^^^^^^^^^^^^^^^^^^
-          -- This object is a bit weird.
+          -- This Recfun object is a bit weird.
           -- The (Expr -> Expr -> Expr) thing is the "f. x. e" abstraction
           -- described in the MinHS slides. Within that, we say that
           -- f is the function itself (i.e. a Recfun!), x is the argument to
@@ -34,14 +34,14 @@ data Value = IntV  Int
 --   (e.g. there will be no cases of adding an integer and a boolean.)
 --   In other words, we can assume that all expressions are type correct.
 eval :: Expr -> Value
-eval (Num    n       ) = IntV n
-eval (Lit    b       ) = BoolV b
-eval (Recfun _  _  f ) = FunV f
-eval (Plus   e1 e2   ) =
-  let IntV x = eval e1
-      IntV y = eval e2
-   in IntV (x + y)
-eval (Eq     e1 e2   ) =
+eval (Num n)         = IntV n
+eval (Lit b)         = BoolV b
+eval (Recfun _  _ f) = FunV f
+eval (Plus e1 e2)    =
+  let IntV n1 = eval e1
+      IntV n2 = eval e2
+   in IntV (n1 + n2)
+eval (Eq e1 e2) =
   -- We use case distinction to handle int-int and bool-bool comparisons.
   -- Any other type of comparison (captured in the _ case) is invalid.
   -- Note that this means two functions can't be compared!
@@ -49,10 +49,10 @@ eval (Eq     e1 e2   ) =
     (IntV n1, IntV n2)   -> BoolV (n1 == n2)
     (BoolV b1, BoolV b2) -> BoolV (b1 == b2)
     _                    -> error "Incomparable values"
-eval (If     ec et ee) =
+eval (If ec et ee) =
   let BoolV c = eval ec
    in if c then eval et else eval ee
-eval (Apply  ef ex   ) =
+eval (Apply ef ex) =
   -- We've implemented application here with lazy evaluation.
   -- What this means is that the argument expression (ex) is only eval'd
   -- when it's immediately required, i.e. when addition or comparing values.
