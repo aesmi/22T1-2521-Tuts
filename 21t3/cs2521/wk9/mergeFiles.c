@@ -14,7 +14,6 @@
  * contents to the file pointed to by mergedfp.
  */
 void mergeFiles(FILE *fp1, FILE *fp2, FILE *mergedfp) {
-    // TODO: What kind of sorting algorithm should we emulate?
     char buf1[MAXLINE];
     char buf2[MAXLINE];
 
