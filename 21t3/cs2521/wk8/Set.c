@@ -5,9 +5,6 @@
 #include "Set.h"
 
 
-#define SET_ERR "Could not allocate memory for set"
-
-
 #define MIN(a, b)   (((a) < (b)) ? (a) : (b))
 #define NONEMPTY(s) ((s)->leastElem <= (s)->cap)
 
@@ -19,15 +16,10 @@ struct set {
 };
 
 
-static void *mallocSafely(size_t, const char *);
-
-
 Set newSet(int cap) {
-    Set s = mallocSafely(sizeof(*s), SET_ERR);
-
-    s->contents = mallocSafely((cap + 1) * sizeof(bool), SET_ERR);
+    Set s = malloc(sizeof(*s));
+    s->contents = malloc((cap + 1) * sizeof(bool));
     memset(s->contents, false, cap * sizeof(bool));
-
     s->cap = cap;
     s->leastElem = cap + 1;
 
@@ -67,15 +59,4 @@ void showSetContents(Set s) {
     }
 
     printf("}\n");
-}
-
-
-static void *mallocSafely(size_t bytes, const char *warning) {
-    void *mem = malloc(bytes);
-    if (mem == NULL) {
-        fprintf(stderr, "%s\n", warning);
-        exit(EXIT_FAILURE);
-    }
-
-    return mem;
 }
