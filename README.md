@@ -1,4 +1,4 @@
-# Files from Term 3, 2021
+# Files from Term 2, 2021
 
 If you're from a future term, try not to look at these resources to get the answers right away! That's defeating the purpose of our tutorials.
 
