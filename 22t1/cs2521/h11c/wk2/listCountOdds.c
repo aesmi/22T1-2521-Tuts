@@ -3,6 +3,9 @@
 #include "List.h"
 
 
+/**
+ * Counts the number of odd elements in a linked list.
+ */
 int listCountOdds(List list) {
     // TODO: Complete this function!
     return -1;
