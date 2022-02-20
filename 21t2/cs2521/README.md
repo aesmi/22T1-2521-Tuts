@@ -1,6 +1,0 @@
-# COMP2521 - Term 2, 2021
-
-If you're from a future term, try not to look at these resources to get the answers right away! That's defeating the purpose of our tutorials.
-
-Also note that I may have made some changes for future terms where I teach the course, so these resources may be out of date.
-
