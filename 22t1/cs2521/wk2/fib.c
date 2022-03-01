@@ -5,6 +5,8 @@
 /**
  * Computes the nth Fibonacci number from the recursive definition, assuming
  * that fib(1) = fib(2) = 1. The algorithm is fine, but what's wrong with the code?
+ *
+ * A: It repeats calculations unnecessarily, blowing out the execution time.
  */
 int fib(int n) {
     if (n == 1 || n == 2) {
@@ -17,7 +19,8 @@ int fib(int n) {
 /**
  * This is a faster, iterative version of fib that runs in O(n) time.
  *
- * There is actually an O(log n) algorithm too! It's complicated though.
+ * There is actually an O(log n) algorithm too! It's complicated though, and
+ * relies on some maths and techniques covered in COMP3121/3821.
  */
 int fibFaster(int n) {
     if (n == 1 || n == 2) {

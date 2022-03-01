@@ -8,8 +8,20 @@
  * Determines if a linked list is sorted or not.
  */
 bool listIsSorted(List list) {
-    // TODO: Complete this function!
-    return true;
+    // Base case #1: the empty list is sorted
+    if (list == NULL) {
+        return true;
+    }
+
+    // Base case #2: a single element list is sorted
+    if (list->next == NULL) {
+        return true;
+    }
+
+    // Recursive case: the current list is sorted if and only if
+    // * the head is less than/equal to the next element
+    // * the rest of the list after the head is sorted
+    return (list->data <= list->next->data) && listIsSorted(list->next);
 }
 
 

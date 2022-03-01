@@ -7,8 +7,22 @@
  * Counts the number of odd elements in a linked list.
  */
 int listCountOdds(List list) {
-    // TODO: Complete this function!
-    return -1;
+    // Base case: empty list has no odd elements
+    if (list == NULL) {
+        return 0;
+    }
+
+    // Recursive case: if the head of the current list is odd, then it has
+    // 1 more odd number than are in the rest of the list, but if the head
+    // is odd, the count in the rest of the list is the same as the whole list
+    if (list->data % 2 == 1) {
+        return 1 + listCountOdds(list->next);
+    } else {
+        return listCountOdds(list->next);
+    }
+
+    // Alternatively:
+    // return (list->data % 2) + listCountOdds(list->next);
 }
 
 
