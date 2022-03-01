@@ -4,7 +4,7 @@ The home for the code/solutions/etc. from my tutorials, as well as any other res
 ## Current term (Term 1, 2022)
 | Course |    Term    |          Tutorial Slot           |                                      Folder                                           |
 |--------|------------|----------------------------------|---------------------------------------------------------------------------------------|
-|COMP2521|Term 1, 2022| Wed 9:00 - 12:00 (w/ Joel), Thu 11:00 - 14:00 (w/ Ming) |[22t1/cs2521/w09a](https://github.com/jedavidson/tutoring/blob/master/22t1/cs2521)|
+|COMP2521|Term 1, 2022| Wed 9:00 - 12:00 (w/ Joel), Thu 11:00 - 14:00 (w/ Ming) |[22t1/cs2521](https://github.com/jedavidson/tutoring/blob/master/22t1/cs2521)|
 
 ## Previous terms
 | Course |    Term    |          Tutorial Slot           |                                      Folder                                        |
