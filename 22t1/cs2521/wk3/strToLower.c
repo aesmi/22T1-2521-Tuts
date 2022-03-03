@@ -6,10 +6,14 @@
 
 
 /**
- * Time complexity:
+ * Time complexity: O(n^2) - !!!
  * (where n is the length of the string)
  */
 void strToLower(char *s) {
+    // The problem here is that we recompute the length of the string each time,
+    // so checking the loop condition invovles O(n) operations, which is bad
+    // A much better solution would store this value in a variable before the
+    // loop so that we only compute it once, giving a final complexity of O(n)
     for (int i = 0; i < strlen(s); i++) {
         s[i] = tolower(s[i]);
     }
