@@ -6,18 +6,18 @@
 typedef struct node *Node;
 
 struct node {
-	char *word;
-	Node  next;
+    char *word;
+    Node  next;
 };
 
 
 Node createNode(char *word) {
-	Node n = malloc(sizeof(struct node));
-	assert(n != NULL);
+    Node n = malloc(sizeof(struct node));
+    assert(n != NULL);
 
-	n->word = word;
-	n->next = NULL;
-	return n;
+    n->word = word;
+    n->next = NULL;
+    return n;
 }
 
 
@@ -26,23 +26,23 @@ Node createNode(char *word) {
  * HINT: How do pointers work again?
  */
 int main(void) {
-	// Assume words are no longer than 99 characters
+    // Assume words are no longer than 99 characters
     // Why just 99, when the array has room for 100 characters?
-	char buffer[100];
+    char buffer[100];
 
-	scanf("%s", buffer);
-	Node n1 = createNode(buffer);
-	scanf("%s", buffer);
-	n1->next = createNode(buffer);
-	scanf("%s", buffer);
-	n1->next->next = createNode(buffer);
+    scanf("%s", buffer);
+    Node n1 = createNode(buffer);
+    scanf("%s", buffer);
+    n1->next = createNode(buffer);
+    scanf("%s", buffer);
+    n1->next->next = createNode(buffer);
 
-	printf(
+    printf(
         "\"%s\" -> \"%s\" -> \"%s\" -> X\n",
-	    n1->word, n1->next->word, n1->next->next->word
+        n1->word, n1->next->word, n1->next->next->word
     );
 
-	free(n1->next->next);
-	free(n1->next);
-	free(n1);
+    free(n1->next->next);
+    free(n1->next);
+    free(n1);
 }
