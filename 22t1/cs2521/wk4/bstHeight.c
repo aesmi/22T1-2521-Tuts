@@ -11,12 +11,18 @@
 /**
  * Finds the height of a binary search tree.
  *
- * Time complexity:
+ * Time complexity: O(n)
  * (where n is the number of nodes in the tree)
  */
 int bstHeight(BST t) {
-    // TODO: Implement this function and analyse its complexity
-    return -1;
+    // Base case: height of the empty tree is notionally -1
+    if (t == NULL) {
+        return -1;
+    }
+
+    // Recursive case: height of the current tree is simply 1 tallest of its
+    // left and right subtrees, plus 1 for the edge taken to get to it
+    return 1 + MAX(bstHeight(t->left), bstHeight(t->right));
 }
 
 
