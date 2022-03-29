@@ -6,12 +6,18 @@
 /**
  * Counts the number of nodes in a binary search tree.
  *
- * Time complexity:
+ * Time complexity: O(n)
  * (where n is the number of nodes)
  */
 int bstNumNodes(BST t) {
-    // TODO: Implement this function and analyse its complexity
-    return 0;
+    // Base case: the empty tree has no nodes
+    if (t == NULL) {
+        return 0;
+    }
+
+    // Recursive case: the number of nodes in the tree is the sum of the
+    // number of nodes in its left and right subtree, plus 1 for the root
+    return 1 + bstNumNodes(t->left) + bstNumNodes(t->right);
 }
 
 
