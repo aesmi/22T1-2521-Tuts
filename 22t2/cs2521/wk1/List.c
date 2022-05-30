@@ -44,6 +44,11 @@ void free_list(List l) {
 
 ConList read_conlist(int argc, char **argv) {
     ConList cl = malloc(sizeof(*cl));
+    if (cl == NULL) {
+        fprintf(stderr, "Allocation of conlist failed.\n");
+        exit(EXIT_FAILURE);
+    }
+
     cl->head = read_list(argc, argv);
     return cl;
 }
@@ -61,6 +66,11 @@ void free_conlist(ConList cl) {
 
 static Node *new_node(int data) {
     Node *n = malloc(sizeof(*n));
+    if (n == NULL) {
+        fprintf(stderr, "Allocation of node failed.\n");
+        exit(EXIT_FAILURE);
+    }
+
     n->data = data;
     n->next = NULL;
     return n;
