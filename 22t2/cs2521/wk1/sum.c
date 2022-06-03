@@ -6,10 +6,17 @@
 
 /** Returns the sum of all elements in a linked list. */
 int sum(List l) {
-    // TODO: Complete this function!
-    return 0;
-}
+    int sum = 0;
 
+    // Quick exercise: write this as a for loop.
+    Node *head = l;
+    while (head != NULL) {
+        sum += head->data;
+        head = head->next;
+    }
+
+    return sum;
+}
 
 int main(int argc, char **argv) {
     List l = read_list(argc, argv);
