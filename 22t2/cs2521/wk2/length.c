@@ -6,8 +6,14 @@
 
 /** Computes the length of a linked list. */
 int length(List list) {
-    // TODO: Complete this function!
-    return -1;
+    // Base case: length of the empty list is 0.
+    if (list == NULL) {
+        return 0;
+    }
+
+    // Recursive case: the length of a nonempty list is 1 + length of rest of
+    // the list after the head.
+    return 1 + length(list->next);
 }
 
 

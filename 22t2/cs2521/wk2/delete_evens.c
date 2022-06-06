@@ -9,8 +9,27 @@
  * to what remains of the original list afterwards.
  */
 List delete_evens(List l) {
-    // TODO: Complete this function!
-    return NULL;
+    // Base case: do nothing with the empty list
+    if (l == NULL) {
+        return NULL;
+    }
+
+    // Recursive case 1: if the head of list is even-valued, then just return
+    // the rest of the list with all of the even numbers taken out.
+    else if (l->data % 2 == 0) {
+        List new_rest = delete_evens(l->next);
+        free(l);
+        return new_rest;
+    }
+
+    // Recursive case 2: if the head of list is odd-valued, then the node after
+    // the head should be the head of the rest of the list after removing all
+    // of the even numbers from it.
+    else {
+        List new_rest = delete_evens(l->next);
+        l->next = new_rest;
+        return l;
+    }
 }
 
 
